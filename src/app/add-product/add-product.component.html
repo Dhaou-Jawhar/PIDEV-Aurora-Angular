@@ -1,0 +1,39 @@
+<form #form="ngForm">
+    <div class="form-group">
+      <label>id</label>
+      <input type="number"  class="form-control" name="id" placeholder="id" [(ngModel)]="product.id" required #id="ngModel">
+      <div *ngIf="id.touched">
+      <div *ngIf="id.errors" class="alert alert-danger">is is required</div>
+      </div>
+    </div>
+    <div class="form-group" >
+      <label>title</label>
+      <input type="text"  class="form-control" name="Title" placeholder="Title" [(ngModel)]="product.title" required minlength="3" #title="ngModel" pattern=[a-zA-Z]{1,16}>
+      <div *ngIf="title.touched">
+      <div *ngIf="title.errors?.['required']" class="alert alert-danger">• Le titre est obligatoire</div>
+      <div *ngIf="title.errors?.['minlength']" class="alert alert-danger">• Le titre est contient au minimum 3 caractères</div>
+      <div *ngIf="title.errors?.['pattern']" class="alert alert-danger">String please</div>  
+    </div>
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="number"  class="form-control" name="Quantity" placeholder="Quantity" [(ngModel)]="product.quantity" required min="0" max="999" #quanity="ngModel">
+      <div *ngIf="quanity.touched">
+      <div *ngIf="quanity.errors?.['min']" class="alert alert-danger">La quantité doit être supérieur à 0 et contient 3 chiffres</div>
+      <div *ngIf="quanity.errors?.['max']" class="alert alert-danger">La quantité doit contient 3 chiffres</div>
+    </div>
+    </div>
+    <div class="form-group">
+      <label>Model</label>
+      <input type="text" name="Model" class="form-control" placeholder="Object" [(ngModel)]="product.object">
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number"  class="form-control" name="Price" placeholder="Enter Price" [(ngModel)]="product.price" required #price="ngModel">
+      <div *ngIf="price.touched">
+      <div *ngIf="price.errors" class="alert alert-danger">is is required</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid" (click)="addProduct()">Add</button>
+  </form>
+  

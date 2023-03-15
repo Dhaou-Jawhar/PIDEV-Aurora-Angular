@@ -1,0 +1,24 @@
+
+
+    <app-logo class="w-200px h-[500px]"></app-logo>
+    <br>
+
+
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let i of listProduct, let p=index">
+      <div class="card" style="width: 18rem; text-align: center00; border-color: blue;">
+          <div class="card-body">
+              <app-product-preview class="w-200px h-[300px]" [obj] = "i.object"></app-product-preview>
+              <h5 class="card-title">{{ i.title }}</h5>
+              <p>Quantity : {{ i.quantity }}</p>
+              <p>Price : {{ i.price }}</p>
+              <p>Like : {{ i.like }}</p>
+              <button class="btn btn-primary" (click)="like(p)">Like</button>
+              <button class="btn btn-primary" (click)="buy(p)" [disabled]="i.quantity == 0" >Buy</button>
+              <button class="btn btn-primary" [routerLink]="['/product',i.id]" >Details</button>         
+          </div>
+      </div>
+  </div>
+  <h2>Alerte Stock = {{alertStock}} Produit de 0 quantity</h2>
+</div>

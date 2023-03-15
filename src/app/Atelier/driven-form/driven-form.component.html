@@ -1,0 +1,58 @@
+<div style="border: 1px solid black; padding: 10px; margin: 10px; width: 60%;" class="mt-10">
+    <h2>Information Generale</h2>
+    <form #form="ngForm">
+        <div class="form-group row pb-1">
+            <label style="display: inline-block;"  class="col-sm-2 col-form-label"> Nom </label>
+            <div class="col-sm-10">
+            <input style="display: inline-block; width: 50%;" type="text"  class="form-control" name="nom" [(ngModel)]="user.nom" required #nom="ngModel" >
+                <div *ngIf="nom.touched">
+                     <div *ngIf="nom.errors" class="alert alert-danger">is is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row pb-1">
+            <label style="display: inline-block;" class="col-sm-2 col-form-label"> Email </label>
+            <div class="col-sm-10">
+            <input style="display: inline-block; width: 50%;" type="text"  class="form-control " name="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3}$" [(ngModel)]="user.email" #email="ngModel">
+                <div *ngIf="email.touched">
+                    <div *ngIf="email.errors?.['required']" class="alert alert-danger">L'Email est obligatoire</div>
+                    <div *ngIf="email.errors?.['pattern']" class="alert alert-danger">check the correct format</div>  
+                </div>
+            </div>
+        </div>
+        
+        <div style="border: 1px solid black; padding: 10px; margin: 40px 10px 10px 10px; width: 95%;">
+            <h2>Information de Payement</h2>
+            <form #form2="ngForm">
+                <div class="form-group row pb-1">
+                    <label style="display: inline-block;" class="col-sm-2 col-form-label"> Type de Carte </label>
+                    <input style="display: inline-block; width: 50%;" type="text"  class="form-control" name="type" required [(ngModel)]="carte.type" #type="ngModel">
+                    <div *ngIf="type.touched">
+                        <div *ngIf="type.errors?.['required']" class="alert alert-danger">L'Email est obligatoire</div>
+                        <div *ngIf="type.errors?.['pattern']" class="alert alert-danger">check the correct format</div>  
+                    </div>
+                </div>
+                <div class="form-group row pb-1">
+                    <label style="display: inline-block;" class="col-sm-2 col-form-label"> Numero de Carte </label>
+                    <input style="display: inline-block; width: 50%;" type="number"  class="form-control" name="Numero" required  [(ngModel)]="carte.numero" #num="ngModel" max="16">
+                    <div *ngIf="num.touched">
+                        <div *ngIf="num.errors?.['required']" class="alert alert-danger">Le Numero de la carte est obligatoire</div>
+                        <div *ngIf="num.errors?.['max']" class="alert alert-danger">u need 16 number</div>  
+                    </div>
+                </div>
+                <div class="form-group row pb-1">
+                    <label style="display: inline-block;" class="col-sm-2 col-form-label"> Date expiration </label>
+                    <input style="display: inline-block; width: 50%;" type="date"  class="form-control" name="date"required [(ngModel)]="carte.dateExp" #exp="ngModel">
+                    <div *ngIf="exp.touched">
+                        <div *ngIf="exp.errors?.['required']" class="alert alert-danger">Date expiration est obligatoire</div>
+                    </div>
+                </div>
+                <div class="form-group row pb-1">
+                    <label style="display: inline-block;" class="col-sm-2 col-form-label"> Code </label>
+                    <input style="display: inline-block; width: 50%;" type="number"  class="form-control" name="code" [disabled]="form2.invalid" >
+                </div>
+            </form>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Ajouter</button>
+    </form>
+</div>

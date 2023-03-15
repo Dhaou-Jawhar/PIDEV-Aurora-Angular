@@ -1,0 +1,32 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">reference</th>
+        <th scope="col">titre</th>
+        <th scope="col">entreprise</th>
+        <th scope="col">etat</th>
+        <th scope="col">Postuler</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let p of listEmploi, let i=index">
+        <tr>
+            <td>{{ p.reference }}</td>
+            <td>{{ p.titre }}</td>
+            <td>{{ p.entreprise }}</td>
+            <td>{{ p.etat }}</td>
+            <td><button href="#" class="btn btn-primary" [disabled]="!p.etat">Postuler</button></td>
+        </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-success" (click)="Calcul()">Billan</button>
+    {{clickMessage}}
+<br>
+
+<input #search
+    (keyup.enter)="Search(search.value)"
+    (blur)="Search(search.value); search.value=''">
+  <button class="btn btn-success" type="button" (click)="Search(search.value)">Search</button>
+  {{Result}}
+  <br>
+
+  <h4> Alerte Offre : {{alertOffer}} offres a l'etat false </h4>
